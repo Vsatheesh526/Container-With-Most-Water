@@ -1,21 +1,16 @@
-class Solution {
-public:
-    int maxArea(vector<int>& height) {
-        int left = 0;
-        int right = height.size() - 1;
-        int maxArea = 0;
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        left, right = 0, len(height) - 1
+        max_area = 0
 
-        while (left < right) {
-            int currentArea = min(height[left], height[right]) * (right - left);
-            maxArea = max(maxArea, currentArea);
+        while left < right:
+            h = min(height[left], height[right])
+            w = right - left
+            max_area = max(max_area, h * w)
 
-            if (height[left] < height[right]) {
-                left++;
-            } else {
-                right--;
-            }
-        }
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
 
-        return maxArea;
-    }
-};
+        return max_area
